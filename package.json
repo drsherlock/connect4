@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "start:dev": "nodemon —- exec babel-node index.js",
-    "test": "jest --watch"
+    "test": "jest",
+    "test:dev": "jest --watch"
   },
   "author": "",
   "license": "ISC",
