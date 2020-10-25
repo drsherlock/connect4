@@ -22,19 +22,19 @@ const playerMove = (req, res) => {
 	const column = body.column;
 
 	if (!token || !turn || !column) {
-		return res.json({status: 'INVALID', error: 'Missing parameters'});
+		return res.status(400).json({status: 'INVALID', error: 'Missing parameters'});
 	}
 
 	if (!store[token]) {
-		return res.json({status: 'INVALID', error: 'Invalid token'});
+		return res.status(401).json({status: 'INVALID', error: 'Invalid token'});
 	}
 
 	if ((store[token]['count'] % 2) + 1  !== PLAYERS[turn]) {
-		return res.json({status: 'INVALID', error: 'Wrong turn'});
+		return res.status(400).json({status: 'INVALID', error: 'Wrong turn'});
 	}
 
 	if (store[token]['board'][0][column] !== 0) {
-		return res.json({status: 'INVALID', error: 'Column full'});
+		return res.status(400).json({status: 'INVALID', error: 'Column full'});
 	}
 
 	helper.makeMove(store[token]['board'], turn, column);
